@@ -1,84 +1,45 @@
 swagger: '2.0'
 info:
   version: 1.0.0
-  title: PetStore on Heroku
-  description: |
-    **This example has a working backend hosted in Heroku**
-
-    You can try all HTTP operation described in this Swagger spec.
-    
-    Find source code of this API [here](https://github.com/mohsen1/petstore-api)
-host: petstore-api.herokuapp.com
-basePath: /pet
+  title: Csds calls to retrieve domains
+  description: get your domains here
+host: adminlogin.liveperson.net
+basePath: /api/account/
 schemes:
   - http
-  - https
 consumes:
   - application/json
-  - text/xml
 produces:
   - application/json
-  - text/html
 paths:
-  /:
+  /{accountId}/service/baseURI.json:
     get:
       parameters:
-        - name: limit
+        - name: accountId
+          description: account id
+          type: string
+        - name: version
           in: query
-          description: number of pets to return
-          type: integer
-          default: 11
-          minimum: 11
-          maximum: 10000
+          description: api version
+          required: true
+          type: String
+          default: "1.0"
       responses:
         200:
-          description:  List all pets
+          description:  List all domains
           schema:
-            title: Pets
+            title: domains
             type: array
             items:
-              $ref: '#/definitions/Pet'
-    post:
-      parameters:
-        - name: pet
-          in: body
-          description: The pet JSON you want to post
-          schema:
-            $ref: '#/definitions/Pet'
-          required: true
-      responses:
-        200:
-          description: Make a new pet
-    put:
-      parameters:
-        - name: pet
-          in: body
-          description: The pet JSON you want to post
-          schema:
-            $ref: '#/definitions/Pet'
-          required: true
-      responses:
-        200:
-          description: Updates the pet
-  /{petId}:
-    get:
-      parameters:
-        - name: petId
-          in: path
-          type: string
-          description: ID of the pet
-          required: true
-      responses:
-        200:
-          description: Sends the pet with pet Id
-
+              $ref: '#/definitions/Csds'
 definitions:
-  Pet:
+ Csds:
     type: object
     properties:
-      name:
+      service:
         type: string
-      birthday:
-        type: integer
-        format: int32
-
+      account:
+        type: string
+      baseURI:
+        type: string
+    
