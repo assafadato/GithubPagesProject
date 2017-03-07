@@ -1,0 +1,44 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: PetStore on Heroku
+  description: |
+    **This example has a working backend hosted in Heroku**
+
+    You can try all HTTP operation described in this Swagger spec.
+    
+    Find source code of this API [here](https://github.com/mohsen1/petstore-api)
+host: adminlogin.liveperson.net
+basePath: /api/account/
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /{accountId}:
+    get:
+      parameters:
+        - name: accountId
+          description: account id
+          type: string
+      responses:
+        200:
+          description:  List all domains
+          schema:
+            title: domains
+            type: array
+            items:
+              $ref: '#/definitions/Csds'
+definitions:
+ Csds:
+    type: object
+    properties:
+      service:
+        type: string
+      account:
+        type: string
+      baseURI:
+        type: string
+    
